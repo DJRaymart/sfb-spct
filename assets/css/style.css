@@ -1,0 +1,213 @@
+:root {
+    --primary-color: #4e73df;
+    --secondary-color: #858796;
+    --success-color: #1cc88a;
+    --info-color: #36b9cc;
+    --warning-color: #f6c23e;
+    --danger-color: #e74a3b;
+    --light-color: #f8f9fc;
+    --dark-color: #5a5c69;
+}
+
+body {
+    background: linear-gradient(135deg, #f8f9fc 0%, #e3e6f0 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.login-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    margin: 20px;
+}
+
+.login-image {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #224abe 100%);
+    padding: 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 45%;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/school-bg.jpg') center/cover;
+    opacity: 0.2;
+}
+
+.login-image h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.login-image p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.features-list li {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.features-list li i {
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.login-form {
+    padding: 40px;
+    width: 55%;
+    background: white;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px 20px;
+    border: 2px solid #e3e6f0;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.15);
+}
+
+.btn-login {
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #224abe 100%);
+    border: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--secondary-color);
+}
+
+.login-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-footer a:hover {
+    color: #224abe;
+}
+
+.school-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.school-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: var(--primary-color);
+}
+
+.alert {
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-floating {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-floating label {
+    padding: 1rem 0.75rem;
+    color: var(--secondary-color);
+}
+
+.form-floating input:focus ~ label,
+.form-floating input:not(:placeholder-shown) ~ label {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .login-image {
+        display: none;
+    }
+    .login-form {
+        width: 100%;
+        padding: 30px;
+    }
+    .school-name {
+        font-size: 1.5rem;
+    }
+} 

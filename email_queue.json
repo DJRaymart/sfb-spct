@@ -1,0 +1,25 @@
+[
+    {
+        "to_email": "raymartkuyah05@gmail.com",
+        "booking_data": {
+            "id": 15,
+            "facility_id": 1,
+            "user_id": 3,
+            "start_time": "2025-08-13 13:00:00",
+            "end_time": "2025-08-13 16:00:00",
+            "attendees_count": 10,
+            "purpose": "Meeting",
+            "things_needed": null,
+            "additional_requirements": null,
+            "status": "pending",
+            "cancellation_reason": null,
+            "created_at": "2025-07-31 00:49:33",
+            "updated_at": "2025-07-31 00:49:33",
+            "facility_name": "IT Lab",
+            "email": "raymartkuyah05@gmail.com",
+            "user_name": "Raymart Dave Silvosa"
+        },
+        "booking_id": "15",
+        "timestamp": "2025-07-30 18:49:42"
+    }
+]

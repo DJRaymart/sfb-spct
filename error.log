@@ -1,0 +1,4 @@
+[01-Aug-2025 17:33:52 Europe/Berlin] User data retrieved: {"id":2,"username":"raymart","email":"raymartkuyah05@gmail.com","full_name":"Raymart Dave Silvosa","role":"faculty","status":"active","phone":"09123456789","department":null,"id_number":null}
+[01-Aug-2025 17:33:52 Europe/Berlin] Final response: {"id":2,"username":"raymart","email":"raymartkuyah05@gmail.com","full_name":"Raymart Dave Silvosa","role":"faculty","status":"active","phone":"09123456789","department":null}
+[01-Aug-2025 17:33:57 Europe/Berlin] User data retrieved: {"id":1,"username":"admin","email":"schoolfacilitybooking@gmail.com","full_name":"System Administrator","role":"admin","status":"active","phone":"09123456789","department":"BSIT","id_number":null}
+[01-Aug-2025 17:33:57 Europe/Berlin] Final response: {"id":1,"username":"admin","email":"schoolfacilitybooking@gmail.com","full_name":"System Administrator","role":"admin","status":"active","phone":"09123456789","department":"BSIT"}
