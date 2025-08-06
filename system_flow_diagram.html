@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Facility Booking System - System Flow Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #858796;
+            --success-color: #1cc88a;
+            --info-color: #36b9cc;
+            --warning-color: #f6c23e;
+            --danger-color: #e74a3b;
+            --light-color: #f8f9fc;
+            --dark-color: #5a5c69;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fc;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--info-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--info-color) 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--info-color) 100%);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 1rem 1.5rem;
+        }
+
+        .diagram-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        .nav-pills .nav-link {
+            border-radius: 25px;
+            margin: 0 0.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--info-color) 100%);
+        }
+
+        .nav-pills .nav-link:not(.active) {
+            color: var(--primary-color);
+            background-color: rgba(78, 115, 223, 0.1);
+        }
+
+        .nav-pills .nav-link:not(.active):hover {
+            background-color: rgba(78, 115, 223, 0.2);
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--info-color) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 0;
+            }
+            
+            .diagram-container {
+                padding: 1rem;
+            }
+            
+            .mermaid {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        .diagram-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .diagram-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .diagram-container::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        .diagram-container::-webkit-scrollbar-thumb:hover {
+            background: var(--info-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-sitemap me-2"></i>
+                SFB System Flow Diagram
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#diagrams">Diagrams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="overview">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-4">
+                        <i class="fas fa-school me-3"></i>
+                        School Facility Booking System
+                    </h1>
+                    <p class="lead mb-4">
+                        Comprehensive System Flow Diagram illustrating the complete architecture, 
+                        user interactions, data flows, and business processes of the facility booking system.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                            <i class="fas fa-users me-2"></i>Multi-Role System
+                        </div>
+                        <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                            <i class="fas fa-calendar-check me-2"></i>Booking Management
+                        </div>
+                        <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                            <i class="fas fa-shield-alt me-2"></i>Secure Authentication
+                        </div>
+                        <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                            <i class="fas fa-envelope me-2"></i>Email Notifications
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="section-icon mx-auto mb-3" style="width: 120px; height: 120px; font-size: 3rem;">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container" id="diagrams">
+        <!-- Navigation Pills -->
+        <ul class="nav nav-pills justify-content-center mb-4" id="diagramTabs">
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#architecture">
+                    <i class="fas fa-building me-2"></i>Architecture
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#user-flow">
+                    <i class="fas fa-users me-2"></i>User Flow
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#booking-process">
+                    <i class="fas fa-calendar-alt me-2"></i>Booking Process
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#data-flow">
+                    <i class="fas fa-exchange-alt me-2"></i>Data Flow
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#database">
+                    <i class="fas fa-database me-2"></i>Database
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#security">
+                    <i class="fas fa-lock me-2"></i>Security
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- System Architecture -->
+            <div class="tab-pane fade show active" id="architecture">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">High-Level System Architecture</h3>
+                            <p class="mb-0 opacity-75">Complete system component overview and interactions</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="diagram-container">
+                            <div class="loading-spinner">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-2">Loading diagram...</p>
+                            </div>
+                            <div class="mermaid">
+graph TB
+    subgraph "Client Layer"
+        WB[Web Browser]
+        MB[Mobile Browser]
+    end
+    
+    subgraph "Presentation Layer"
+        UI[User Interface]
+        subgraph "Pages"
+            LP[Login Page]
+            DP[Dashboard]
+            BP[Booking Page]
+            MP[Management Pages]
+            AP[Admin Panel]
+        end
+    end
+    
+    subgraph "Application Layer"
+        subgraph "Core Components"
+            AUTH[Authentication System]
+            BM[Booking Manager]
+            FM[Facility Manager]
+            UM[User Manager]
+            NS[Notification System]
+        end
+        
+        subgraph "APIs & Processors"
+            PB[process_booking.php]
+            PL[process_login.php]
+            PP[process_profile.php]
+            SE[send_support_email.php]
+        end
+    end
+    
+    subgraph "Data Layer"
+        DB[(MySQL Database)]
+        subgraph "Tables"
+            UT[users]
+            FT[facilities]
+            BT[bookings]
+            ST[support_requests]
+            BLT[booking_logs]
+        end
+    end
+    
+    subgraph "External Services"
+        SMTP[SMTP Server]
+        EMAIL[Email Service]
+    end
+    
+    WB --> UI
+    MB --> UI
+    UI --> AUTH
+    UI --> BM
+    UI --> FM
+    UI --> UM
+    
+    AUTH --> PL
+    BM --> PB
+    FM --> MP
+    UM --> PP
+    
+    PB --> DB
+    PL --> DB
+    PP --> DB
+    SE --> SMTP
+    
+    NS --> EMAIL
+    SMTP --> EMAIL
+    
+    DB --> UT
+    DB --> FT
+    DB --> BT
+    DB --> ST
+    DB --> BLT
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Flow -->
+            <div class="tab-pane fade" id="user-flow">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">User Role-Based System Flow</h3>
+                            <p class="mb-0 opacity-75">Different user roles and their system interactions</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="diagram-container">
+                            <div class="mermaid">
+graph TD
+    START([User Accesses System]) --> LOGIN{Login Required?}
+    LOGIN -->|Yes| LOGINPAGE[Login Page]
+    LOGIN -->|No| DASHBOARD[Dashboard]
+    
+    LOGINPAGE --> AUTH{Authentication}
+    AUTH -->|Success| ROLE{User Role?}
+    AUTH -->|Failure| LOGINPAGE
+    
+    ROLE -->|Admin| ADMIN_DASH[Admin Dashboard]
+    ROLE -->|Faculty| FACULTY_DASH[Faculty Dashboard]
+    ROLE -->|Staff| STAFF_DASH[Staff Dashboard]
+    
+    subgraph "Admin Functions"
+        ADMIN_DASH --> MANAGE_USERS[Manage Users]
+        ADMIN_DASH --> MANAGE_FACILITIES[Manage Facilities]
+        ADMIN_DASH --> APPROVE_BOOKINGS[Approve Bookings]
+        ADMIN_DASH --> ANALYTICS[View Analytics]
+        ADMIN_DASH --> SUPPORT_MGMT[Support Management]
+    end
+    
+    subgraph "Faculty Functions"
+        FACULTY_DASH --> CREATE_BOOKING[Create Booking]
+        FACULTY_DASH --> VIEW_BOOKINGS[View My Bookings]
+        FACULTY_DASH --> EDIT_PROFILE[Edit Profile]
+        FACULTY_DASH --> BOOKING_HISTORY[Booking History]
+    end
+    
+    subgraph "Staff Functions"
+        STAFF_DASH --> CREATE_BOOKING_LIMITED[Create Limited Booking]
+        STAFF_DASH --> VIEW_BOOKINGS_LIMITED[View My Bookings]
+        STAFF_DASH --> EDIT_PROFILE_LIMITED[Edit Profile]
+    end
+    
+    CREATE_BOOKING --> CONFLICT_CHECK{Check Conflicts}
+    CREATE_BOOKING_LIMITED --> CONFLICT_CHECK
+    
+    CONFLICT_CHECK -->|No Conflict| SUBMIT_BOOKING[Submit Booking]
+    CONFLICT_CHECK -->|Conflict Found| BOOKING_ERROR[Show Conflict Error]
+    
+    SUBMIT_BOOKING --> PENDING_STATUS[Booking Status: Pending]
+    PENDING_STATUS --> ADMIN_APPROVAL{Admin Approval}
+    
+    ADMIN_APPROVAL -->|Approved| APPROVED_STATUS[Status: Approved]
+    ADMIN_APPROVAL -->|Rejected| REJECTED_STATUS[Status: Rejected]
+    
+    APPROVED_STATUS --> EMAIL_NOTIFICATION[Send Email Notification]
+    REJECTED_STATUS --> EMAIL_NOTIFICATION
+    
+    EMAIL_NOTIFICATION --> END([Process Complete])
+    BOOKING_ERROR --> CREATE_BOOKING
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Process -->
+            <div class="tab-pane fade" id="booking-process">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">Booking Process Sequence</h3>
+                            <p class="mb-0 opacity-75">Step-by-step booking workflow and interactions</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="diagram-container">
+                            <div class="mermaid">
+sequenceDiagram
+    participant User
+    participant UI as User Interface
+    participant Auth as Authentication
+    participant BookingMgr as Booking Manager
+    participant ConflictChk as Conflict Checker
+    participant DB as Database
+    participant EmailSvc as Email Service
+    participant Admin
+    
+    User->>UI: Access Booking Page
+    UI->>Auth: Verify User Session
+    Auth-->>UI: User Authenticated
+    
+    User->>UI: Fill Booking Form
+    User->>UI: Submit Booking Request
+    
+    UI->>BookingMgr: Process Booking Data
+    BookingMgr->>ConflictChk: Check for Conflicts
+    ConflictChk->>DB: Query Existing Bookings
+    DB-->>ConflictChk: Return Booking Data
+    
+    alt No Conflicts
+        ConflictChk-->>BookingMgr: No Conflicts Found
+        BookingMgr->>DB: Insert New Booking
+        DB-->>BookingMgr: Booking Created (Pending)
+        BookingMgr-->>UI: Booking Submitted Successfully
+        UI-->>User: Show Success Message
+        
+        BookingMgr->>EmailSvc: Send Notification to Admin
+        EmailSvc->>Admin: Email: New Booking Request
+        
+        Admin->>UI: Review Booking Request
+        Admin->>BookingMgr: Approve/Reject Booking
+        BookingMgr->>DB: Update Booking Status
+        
+        BookingMgr->>EmailSvc: Send Status Update
+        EmailSvc->>User: Email: Booking Status Update
+    else Conflicts Found
+        ConflictChk-->>BookingMgr: Conflicts Detected
+        BookingMgr-->>UI: Return Conflict Error
+        UI-->>User: Show Conflict Message
+    end
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Flow -->
+            <div class="tab-pane fade" id="data-flow">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">System Data Flow</h3>
+                            <p class="mb-0 opacity-75">Data movement and processing throughout the system</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="diagram-container">
+                            <div class="mermaid">
+graph LR
+    subgraph "Input Sources"
+        USER_INPUT[User Input]
+        ADMIN_INPUT[Admin Input]
+        SYSTEM_INPUT[System Generated]
+    end
+    
+    subgraph "Processing Layer"
+        VALIDATION[Input Validation]
+        BUSINESS_LOGIC[Business Logic Processing]
+        CONFLICT_RESOLUTION[Conflict Resolution]
+        NOTIFICATION_PROC[Notification Processing]
+    end
+    
+    subgraph "Data Storage"
+        USER_DATA[(User Data)]
+        FACILITY_DATA[(Facility Data)]
+        BOOKING_DATA[(Booking Data)]
+        LOG_DATA[(System Logs)]
+        EMAIL_QUEUE[(Email Queue)]
+    end
+    
+    subgraph "Output Destinations"
+        USER_INTERFACE[User Interface]
+        EMAIL_SYSTEM[Email Notifications]
+        REPORTS[Reports & Analytics]
+        AUDIT_LOGS[Audit Logs]
+    end
+    
+    USER_INPUT --> VALIDATION
+    ADMIN_INPUT --> VALIDATION
+    SYSTEM_INPUT --> VALIDATION
+    
+    VALIDATION --> BUSINESS_LOGIC
+    BUSINESS_LOGIC --> CONFLICT_RESOLUTION
+    BUSINESS_LOGIC --> NOTIFICATION_PROC
+    
+    BUSINESS_LOGIC --> USER_DATA
+    BUSINESS_LOGIC --> FACILITY_DATA
+    BUSINESS_LOGIC --> BOOKING_DATA
+    BUSINESS_LOGIC --> LOG_DATA
+    
+    NOTIFICATION_PROC --> EMAIL_QUEUE
+    
+    USER_DATA --> USER_INTERFACE
+    FACILITY_DATA --> USER_INTERFACE
+    BOOKING_DATA --> USER_INTERFACE
+    BOOKING_DATA --> REPORTS
+    
+    EMAIL_QUEUE --> EMAIL_SYSTEM
+    LOG_DATA --> AUDIT_LOGS
+    
+    USER_INTERFACE --> USER_INPUT
+    REPORTS --> ADMIN_INPUT
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database -->
+            <div class="tab-pane fade" id="database">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">Database Entity Relationships</h3>
+                            <p class="mb-0 opacity-75">Database structure and entity relationships</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="diagram-container">
+                            <div class="mermaid">
+erDiagram
+    USERS ||--o{ BOOKINGS : creates
+    USERS ||--o{ SUPPORT_REQUESTS : submits
+    FACILITIES ||--o{ BOOKINGS : "booked for"
+    BOOKINGS ||--o{ BOOKING_LOGS : generates
+    BOOKINGS ||--o{ BOOKING_MATERIALS : "may require"
+    MATERIALS ||--o{ BOOKING_MATERIALS : "used in"
+    
+    USERS {
+        int id PK
+        string username
+        string email
+        string password_hash
+        enum role
+        enum status
+        datetime created_at
+    }
+    
+    FACILITIES {
+        int id PK
+        string name
+        text description
+        int capacity
+        string location
+        string type
+        enum status
+    }
+    
+    BOOKINGS {
+        int id PK
+        int facility_id FK
+        int user_id FK
+        datetime start_time
+        datetime end_time
+        int attendees_count
+        text purpose
+        enum status
+        datetime created_at
+    }
+    
+    SUPPORT_REQUESTS {
+        int id PK
+        int user_id FK
+        string subject
+        text message
+        enum status
+        datetime created_at
+    }
+    
+    BOOKING_LOGS {
+        int id PK
+        int booking_id FK
+        string action
+        text details
+        datetime created_at
+    }
+    
+    BOOKING_MATERIALS {
+        int id PK
+        int booking_id FK
+        int material_id FK
+        int quantity
+    }
+    
+    MATERIALS {
+        int id PK
+        string name
+        text description
+        int available_quantity
+    }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security -->
+            <div class="tab-pane fade" id="security">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="section-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">Security & Authentication Flow</h3>
+                            <p class="mb-0 opacity-75">Security measures and authentication process</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="diagram-container">
+                            <div class="mermaid">
+graph TD
+    START([User Access]) --> HTTPS_CHECK{HTTPS Connection?}
+    HTTPS_CHECK -->|No| REDIRECT_HTTPS[Redirect to HTTPS]
+    HTTPS_CHECK -->|Yes| SESSION_CHECK{Valid Session?}
+    
+    REDIRECT_HTTPS --> SESSION_CHECK
+    
+    SESSION_CHECK -->|No| LOGIN_FORM[Display Login Form]
+    SESSION_CHECK -->|Yes| CSRF_CHECK{Valid CSRF Token?}
+    
+    LOGIN_FORM --> CREDENTIALS[User Enters Credentials]
+    CREDENTIALS --> VALIDATE_CREDS{Validate Credentials}
+    
+    VALIDATE_CREDS -->|Invalid| LOGIN_ERROR[Show Login Error]
+    VALIDATE_CREDS -->|Valid| CREATE_SESSION[Create User Session]
+    
+    LOGIN_ERROR --> LOGIN_FORM
+    CREATE_SESSION --> GENERATE_CSRF[Generate CSRF Token]
+    
+    CSRF_CHECK -->|Invalid| CSRF_ERROR[CSRF Error]
+    CSRF_CHECK -->|Valid| ROLE_CHECK{Check User Role}
+    
+    CSRF_ERROR --> LOGIN_FORM
+    GENERATE_CSRF --> ROLE_CHECK
+    
+    ROLE_CHECK --> ADMIN_ACCESS[Admin Dashboard]
+    ROLE_CHECK --> FACULTY_ACCESS[Faculty Dashboard]
+    ROLE_CHECK --> STAFF_ACCESS[Staff Dashboard]
+    
+    subgraph "Security Measures"
+        SQL_INJECTION[SQL Injection Prevention]
+        XSS_PROTECTION[XSS Protection]
+        INPUT_VALIDATION[Input Validation]
+        PASSWORD_HASHING[Password Hashing]
+    end
+    
+    ADMIN_ACCESS --> SQL_INJECTION
+    FACULTY_ACCESS --> SQL_INJECTION
+    STAFF_ACCESS --> SQL_INJECTION
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="py-5" id="features">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">System Features</h2>
+                <p class="lead">Key capabilities and components of the facility booking system</p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h5>Multi-Role System</h5>
+                    <p>Admin, Faculty, and Staff roles with different permissions and access levels</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h5>Booking Management</h5>
+                    <p>Complete booking lifecycle with conflict detection and approval workflows</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h5>Security Features</h5>
+                    <p>CSRF protection, SQL injection prevention, and secure authentication</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h5>Email Notifications</h5>
+                    <p>Automated email alerts for booking status changes and system events</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h5>Analytics & Reports</h5>
+                    <p>Comprehensive booking statistics and performance monitoring</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h5>Responsive Design</h5>
+                    <p>Mobile-friendly interface with Bootstrap-based responsive layout</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 School Facility Booking System - System Flow Diagram</p>
+            <p class="mb-0 small opacity-75">Comprehensive system architecture documentation</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            },
+            sequence: {
+                diagramMarginX: 50,
+                diagramMarginY: 10,
+                actorMargin: 50,
+                width: 150,
+                height: 65,
+                boxMargin: 10,
+                boxTextMargin: 5,
+                noteMargin: 10,
+                messageMargin: 35,
+                mirrorActors: true,
+                bottomMarginAdj: 1,
+                useMaxWidth: true
+            },
+            er: {
+                diagramPadding: 20,
+                layoutDirection: 'TB',
+                minEntityWidth: 100,
+                minEntityHeight: 75,
+                entityPadding: 15,
+                stroke: 'gray',
+                fill: 'honeydew',
+                fontSize: 12,
+                useMaxWidth: true
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingSpinners = document.querySelectorAll('.loading-spinner');
+            loadingSpinners.forEach(spinner => {
+                spinner.style.display = 'block';
+            });
+
+            // Hide loading spinners after mermaid renders
+            setTimeout(() => {
+                loadingSpinners.forEach(spinner => {
+                    spinner.style.display = 'none';
+                });
+            }, 2000);
+        });
+
+        // Add animation to cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
