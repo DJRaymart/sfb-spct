@@ -308,4 +308,4 @@ For support and questions:
 
 ---
 
-**Developed with ❤️ for educational institutions** 
+**Developed by Raymart Dave Silvosa❤️ for educational institutions** 
